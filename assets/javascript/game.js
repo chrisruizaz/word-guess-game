@@ -25,7 +25,7 @@ for (x = 0; x < carObject.corvette.name.length; x++) {
   ).innerHTML += `<span id="letter${x}">&nbsp;_&nbsp</span>`;
 }
 
-var lettersWrong;
+var lettersWrong = {};
 
 document.onkeyup = function(event) {
   userGuess = event.key;
@@ -33,7 +33,21 @@ document.onkeyup = function(event) {
   //wrong letter location
   if (carObject.corvette.name.indexOf(userGuess) == -1) {
     console.log(`${userGuess} is not in this word.`);
-    document.getElementById("lose-text").innerHTML += userGuess;
+    //Array for Alphabet
+    console.log(function genCharArray(charA, charZ) {
+      var a = [],
+        i = charA.charCodeAt(0),
+        j = charZ.charCodeAt(0);
+      for (userGuess; i < j; ++i) {
+        a.push(lettersWrong.fromCharCode(i));
+      }
+      return a;
+    });
+
+    document.getElementById("lose-text").innerHTML += lettersWrong.join(
+      charA,
+      charZ
+    );
   } else if (carObject.corvette.name.indexOf(userGuess) >= 0) {
     //the location of the correct letter.
     for (i = 0; i < carObject.corvette.name.length; i++) {
