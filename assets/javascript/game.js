@@ -25,38 +25,32 @@ for (x = 0; x < carObject.corvette.name.length; x++) {
   ).innerHTML += `<span id="letter${x}">&nbsp;_&nbsp</span>`;
 }
 
-var lettersWrong = {};
+var lettersWrong = [];
 
 document.onkeyup = function(event) {
   userGuess = event.key;
-
-  //wrong letter location
-  if (carObject.corvette.name.indexOf(userGuess) == -1) {
-    console.log(`${userGuess} is not in this word.`);
-    //Array for Alphabet
-    console.log(function genCharArray(charA, charZ) {
-      var a = [],
-        i = charA.charCodeAt(0),
-        j = charZ.charCodeAt(0);
-      for (userGuess; i < j; ++i) {
-        a.push(lettersWrong.fromCharCode(i));
-      }
-      return a;
-    });
-
-    document.getElementById("lose-text").innerHTML += lettersWrong.join(
-      charA,
-      charZ
-    );
-  } else if (carObject.corvette.name.indexOf(userGuess) >= 0) {
-    //the location of the correct letter.
-    for (i = 0; i < carObject.corvette.name.length; i++) {
-      if (userGuess === carObject.corvette.name[i]) {
-        //correct letter in location
-        console.log(`correct letter at location ${i}`);
-        document.getElementById(`letter${i}`).innerHTML = userGuess;
-      } else {
-        //these are not the location
+  if (event.keyCode >= 65 && event.keyCode <= 90) {
+    if (lettersWrong.indexOf(userGuess) != -1) {
+      console.log("you already guessed that.");
+    } else {
+      //wrong letter location
+      if (carObject.corvette.name.indexOf(userGuess) == -1) {
+        console.log(`${userGuess} is not in this word.`);
+        lettersWrong.push(userGuess);
+        document.getElementById("lose-text").innerHTML = lettersWrong.join(
+          ", "
+        );
+      } else if (carObject.corvette.name.indexOf(userGuess) >= 0) {
+        //the location of the correct letter.
+        for (i = 0; i < carObject.corvette.name.length; i++) {
+          if (userGuess === carObject.corvette.name[i]) {
+            //correct letter in location
+            console.log(`correct letter at location ${i}`);
+            document.getElementById(`letter${i}`).innerHTML = userGuess;
+          } else {
+            //these are not the location
+          }
+        }
       }
     }
   }
