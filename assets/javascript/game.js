@@ -24,9 +24,8 @@ for (x = 0; x < carObject.corvette.name.length; x++) {
     "word-goes-here"
   ).innerHTML += `<span id="letter${x}">&nbsp;_&nbsp</span>`;
 }
-
+//wrong letters array
 var lettersWrong = [];
-
 document.onkeyup = function(event) {
   userGuess = event.key;
   //Alphabet Array
@@ -39,7 +38,14 @@ document.onkeyup = function(event) {
         console.log(`${userGuess} is not in this word.`);
         lettersWrong.push(userGuess);
         console.log(guessesLeft--);
+        if (guessesLeft === 0) {
+          !alert("GAME OVER");
+          {
+            window.location.reload();
+          }
+        }
         document.getElementById("guesses-text").innerHTML = guessesLeft;
+        //putting wrong letters in array
         document.getElementById("lose-text").innerHTML = lettersWrong.join(
           ", "
         );
