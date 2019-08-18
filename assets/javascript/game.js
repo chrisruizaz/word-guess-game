@@ -38,7 +38,7 @@ document.onkeyup = function(event) {
       if (carObject.corvette.name.indexOf(userGuess) == -1) {
         console.log(`${userGuess} is not in this word.`);
         lettersWrong.push(userGuess);
-        console.log((this.guessesLeft = guessesLeft - 1));
+        console.log(guessesLeft--);
         document.getElementById("guesses-text").innerHTML = guessesLeft;
         document.getElementById("lose-text").innerHTML = lettersWrong.join(
           ", "
