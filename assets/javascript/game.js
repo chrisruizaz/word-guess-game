@@ -29,6 +29,7 @@ var lettersWrong = [];
 
 document.onkeyup = function(event) {
   userGuess = event.key;
+  //Alphabet Array
   if (event.keyCode >= 65 && event.keyCode <= 90) {
     if (lettersWrong.indexOf(userGuess) != -1) {
       console.log("you already guessed that.");
@@ -37,6 +38,8 @@ document.onkeyup = function(event) {
       if (carObject.corvette.name.indexOf(userGuess) == -1) {
         console.log(`${userGuess} is not in this word.`);
         lettersWrong.push(userGuess);
+        console.log((this.guessesLeft = guessesLeft - 1));
+        document.getElementById("guesses-text").innerHTML = guessesLeft;
         document.getElementById("lose-text").innerHTML = lettersWrong.join(
           ", "
         );
